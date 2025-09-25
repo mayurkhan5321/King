@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Unlock Style</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Login to your Unlock Style Men's Salon account">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <!-- Auth Background -->
+    <div class="auth-background">
+        <div class="auth-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Header -->
+            <div class="auth-header">
+                <a href="index.html" class="back-home">
+                    <i class="fas fa-arrow-left"></i> Back to Salon
+                </a>
+                <div class="auth-logo">
+                    <i class="fas fa-cut"></i>
+                    <h1>Unlock Style</h1>
+                </div>
+                <h2>Welcome Back! 👋</h2>
+                <p>Sign in to your account to continue</p>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                        <button type="button" class="password-toggle" onclick="auth.togglePassword('loginPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-link" onclick="auth.showForgotPassword()">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="auth-btn primary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In to Your Account
+                </button>
+            </form>
+
+            <!-- Social Login -->
+            <div class="social-auth">
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+                <div class="social-buttons">
+                    <button class="social-btn google" onclick="auth.socialLogin('google')">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button class="social-btn facebook" onclick="auth.socialLogin('facebook')">
+                        <i class="fab fa-facebook"></i>
+                        Facebook
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html" class="auth-link">Create one here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal-overlay" id="forgotModal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <button class="modal-close" onclick="auth.closeForgotPassword()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address and we'll send you a link to reset your password.</p>
+                <form class="auth-form" id="forgotForm">
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="forgotEmail" required placeholder="Your email address">
+                        </div>
+                    </div>
+                    <button type="submit" class="auth-btn primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Reset Link
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

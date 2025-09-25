@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management - Unlock Style Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-brand">
+                    <i class="fas fa-cut"></i>
+                    <span class="brand-text">Unlock Style</span>
+                    <span class="brand-badge">Admin</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-title">MAIN</div>
+                    <a href="admin.html" class="nav-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                    <a href="admin-analytics.html" class="nav-item">
+                        <i class="fas fa-chart-pie"></i>
+                        <span class="nav-text">Analytics</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">MANAGEMENT</div>
+                    <a href="admin-customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span class="nav-text">Customers</span>
+                    </a>
+                    <a href="admin-staff.html" class="nav-item active">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="nav-text">Staff</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">NOTIFICATIONS</div>
+                    <a href="admin-notifications.html" class="nav-item">
+                        <i class="fas fa-bell"></i>
+                        <span class="nav-text">Push Notifications</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1>Staff Management</h1>
+                    <div class="breadcrumb">
+                        <span>Home</span> / <span>Staff</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" onclick="adminApp.openStaffModal()">
+                        <i class="fas fa-plus"></i> Add Staff
+                    </button>
+                    <button class="btn-secondary" onclick="adminApp.exportStaffData()">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Staff Analytics -->
+                <div class="stats-grid">
+                    <div class="stat-card revenue">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalStaffCount">8</div>
+                            <div class="stat-label">Total Staff</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card bookings">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="activeAssignments">24</div>
+                            <div class="stat-label">Active Assignments</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card customers">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="avgStaffRating">4.7</div>
+                            <div class="stat-label">Avg. Rating</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff Table -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="staffSearch" placeholder="Search staff..." onkeyup="adminApp.searchStaff()">
+                    </div>
+                    <select id="roleFilter" onchange="adminApp.filterStaff()">
+                        <option value="all">All Roles</option>
+                        <option value="barber">Barber</option>
+                        <option value="stylist">Stylist</option>
+                        <option value="senior">Senior Stylist</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Assigned Bookings</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staffTableBody">
+                            <!-- Staff will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Staff Workload Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Staff Workload Distribution</h3>
+                    </div>
+                    <canvas id="staffWorkloadChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Staff Modal -->
+    <div id="staffModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="staffModalTitle">Add Staff Member</h3>
+                <span class="close" onclick="adminApp.closeModal('staffModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="staffForm" onsubmit="adminApp.saveStaff(event)">
+                    <input type="hidden" id="staffId">
+                    <div class="form-group">
+                        <label for="staffName">Full Name</label>
+                        <input type="text" id="staffName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffRole">Role</label>
+                        <select id="staffRole" required>
+                            <option value="barber">Barber</option>
+                            <option value="stylist">Stylist</option>
+                            <option value="senior">Senior Stylist</option>
+                            <option value="trainee">Trainee</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffPhone">Phone</label>
+                        <input type="tel" id="staffPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffEmail">Email</label>
+                        <input type="email" id="staffEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="staffSpecialty">Specialty</label>
+                        <input type="text" id="staffSpecialty" placeholder="e.g., Beard Styling, Hair Color">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Save Staff</button>
+                        <button type="button" class="btn-secondary" onclick="adminApp.closeModal('staffModal')">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.adminApp) {
+                adminApp.loadStaff();
+                adminApp.setupStaffCharts();
+            }
+        });
+    </script>
+</body>
+</html>

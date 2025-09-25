@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Unlock Style</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Get in touch with Unlock Style Men's Salon. Find our location, contact details, and business hours.">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <i class="fas fa-phone"></i>
+                    <h1>Contact Us</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-share" onclick="contactPage.shareLocation()">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Contact Hero -->
+        <section class="contact-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Get in Touch</h2>
+                    <p>We're here to help you look your best. Reach out to us for appointments or inquiries.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions-section">
+            <div class="container">
+                <div class="action-cards">
+                    <a href="tel:+919876543210" class="action-card call">
+                        <div class="action-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="action-content">
+                            <h3>Call Now</h3>
+                            <p>+91 98765 43210</p>
+                            <span class="action-badge">Tap to Call</span>
+                        </div>
+                    </a>
+
+                    <a href="https://wa.me/919876543210" class="action-card whatsapp" target="_blank">
+                        <div class="action-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="action-content">
+                            <h3>WhatsApp</h3>
+                            <p>Instant Message</p>
+                            <span class="action-badge">Quick Response</span>
+                        </div>
+                    </a>
+
+                    <a href="#directions" class="action-card directions" onclick="contactPage.openDirections()">
+                        <div class="action-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="action-content">
+                            <h3>Directions</h3>
+                            <p>Get Route</p>
+                            <span class="action-badge">Navigate</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information -->
+        <section class="contact-info-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Salon Information</h2>
+                    <p>Visit us or get in touch</p>
+                </div>
+
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Our Location</h3>
+                            <p>Shop No. 5, Paradise Heights<br>Andheri West, Mumbai<br>Maharashtra - 400058</p>
+                            <button class="btn-copy" onclick="contactPage.copyText('Shop No. 5, Paradise Heights, Andheri West, Mumbai, Maharashtra - 400058')">
+                                <i class="fas fa-copy"></i> Copy Address
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Business Hours</h3>
+                            <div class="timing-list">
+                                <div class="timing-item">
+                                    <span>Monday - Friday</span>
+                                    <span>9:00 AM - 9:00 PM</span>
+                                </div>
+                                <div class="timing-item">
+                                    <span>Saturday</span>
+                                    <span>9:00 AM - 10:00 PM</span>
+                                </div>
+                                <div class="timing-item">
+                                    <span>Sunday</span>
+                                    <span>10:00 AM - 8:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email & Social</h3>
+                            <div class="contact-details">
+                                <p><i class="fas fa-envelope"></i> info@unlockstyle.com</p>
+                                <p><i class="fas fa-globe"></i> www.unlockstyle.com</p>
+                            </div>
+                            <div class="social-links-horizontal">
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-google"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section" id="directions">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Find Us</h2>
+                    <p>Visit our salon in Andheri West</p>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.606366107665!2d72.8272143153858!3d19.141755255165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b7dd4f8c1b7d%3A0x5b14c2a0b5b5b5b5!2sAndheri%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0; border-radius: var(--radius-medium);" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                    <div class="map-actions">
+                        <button class="btn-map-action" onclick="contactPage.openGoogleMaps()">
+                            <i class="fab fa-google"></i> Open in Google Maps
+                        </button>
+                        <button class="btn-map-action" onclick="contactPage.getDirections()">
+                            <i class="fas fa-route"></i> Get Directions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Send us a Message</h2>
+                    <p>Have questions? We're here to help</p>
+                </div>
+
+                <div class="form-card">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">
+                                <i class="fas fa-user"></i> Your Name *
+                            </label>
+                            <input type="text" id="contactName" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPhone">
+                                <i class="fas fa-phone"></i> Phone Number *
+                            </label>
+                            <input type="tel" id="contactPhone" required placeholder="Enter your phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">
+                                <i class="fas fa-envelope"></i> Email Address
+                            </label>
+                            <input type="email" id="contactEmail" placeholder="Enter your email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">
+                                <i class="fas fa-tag"></i> Subject *
+                            </label>
+                            <select id="contactSubject" required>
+                                <option value="">Select a subject</option>
+                                <option value="appointment">Book Appointment</option>
+                                <option value="service">Service Inquiry</option>
+                                <option value="complaint">Complaint</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">
+                                <i class="fas fa-comment"></i> Message *
+                            </label>
+                            <textarea id="contactMessage" required placeholder="Tell us how we can help you..." rows="5"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Quick answers to common questions</p>
+                </div>
+
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="contactPage.toggleFAQ(this)">
+                            <span>What are your working hours?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We're open Monday to Friday from 9:00 AM to 9:00 PM, Saturday from 9:00 AM to 10:00 PM, and Sunday from 10:00 AM to 8:00 PM.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="contactPage.toggleFAQ(this)">
+                            <span>Do I need to book an appointment?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While walk-ins are welcome, we recommend booking an appointment to ensure availability and avoid waiting times.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="contactPage.toggleFAQ(this)">
+                            <span>What payment methods do you accept?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept cash, UPI payments, credit/debit cards, and all major digital wallets.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="contactPage.toggleFAQ(this)">
+                            <span>Do you have parking available?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we have dedicated parking space for our customers behind the building.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PhonePe Style Bottom Navigation -->
+    <nav class="bottom-nav phonepe-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="services.html" class="nav-item">
+                <i class="fas fa-cut"></i>
+                <span>Services</span>
+            </a>
+            <a href="cart.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="cartBadge">0</span>
+            </a>
+            <a href="bookings.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="contact.html" class="nav-item active">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="tel:+919876543210" class="fab fab-call">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919876543210" class="fab fab-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="#directions" class="fab fab-location" onclick="contactPage.openDirections()">
+            <i class="fas fa-map-marker-alt"></i>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>

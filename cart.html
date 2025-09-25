@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Unlock Style</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Review your selected services and book your appointment at Unlock Style Men's Salon">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="services.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h1>Your Cart</h1>
+                </div>
+                <div class="cart-summary-header">
+                    <span id="headerCartCount">0 items</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Cart Items Section -->
+        <section class="cart-section">
+            <div class="container">
+                <div class="cart-header">
+                    <h2>Selected Services</h2>
+                    <button class="btn-clear" id="clearCartBtn">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                </div>
+
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be populated by JavaScript -->
+                    <div class="empty-cart" id="emptyCart">
+                        <div class="empty-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some services to get started</p>
+                        <a href="services.html" class="btn-primary">
+                            <i class="fas fa-cut"></i> Browse Services
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary-card" id="cartSummary" style="display: none;">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotalAmount">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>GST (18%)</span>
+                        <span id="taxAmount">₹0</span>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total">
+                        <span>Total Amount</span>
+                        <span id="totalAmount">₹0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Form Section -->
+        <section class="booking-section" id="bookingSection" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Book Your Appointment</h2>
+                    <p>Fill in your details to confirm booking</p>
+                </div>
+
+                <div class="booking-form-card">
+                    <form id="bookingForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="customerName">
+                                    <i class="fas fa-user"></i> Full Name *
+                                </label>
+                                <input type="text" id="customerName" required 
+                                       placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerPhone">
+                                    <i class="fas fa-phone"></i> Phone Number *
+                                </label>
+                                <input type="tel" id="customerPhone" required 
+                                       placeholder="Enter your phone number"
+                                       pattern="[0-9]{10}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerEmail">
+                                    <i class="fas fa-envelope"></i> Email Address
+                                </label>
+                                <input type="email" id="customerEmail" 
+                                       placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bookingDate">
+                                    <i class="fas fa-calendar"></i> Preferred Date *
+                                </label>
+                                <input type="date" id="bookingDate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bookingTime">
+                                    <i class="fas fa-clock"></i> Preferred Time *
+                                </label>
+                                <input type="time" id="bookingTime" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label>Payment Method *</label>
+                                <div class="payment-options">
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="cash" checked>
+                                        <div class="payment-card">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                            <span>Pay at Salon</span>
+                                        </div>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="upi">
+                                        <div class="payment-card">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            <span>UPI Payment</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="specialInstructions">
+                                    <i class="fas fa-sticky-note"></i> Special Instructions
+                                </label>
+                                <textarea id="specialInstructions" 
+                                          placeholder="Any special requirements or instructions..."
+                                          rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-booking">
+                                <i class="fas fa-calendar-check"></i>
+                                Confirm Booking - <span id="bookingTotal">₹0</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PhonePe Style Bottom Navigation -->
+    <nav class="bottom-nav phonepe-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="services.html" class="nav-item">
+                <i class="fas fa-cut"></i>
+                <span>Services</span>
+            </a>
+            <a href="cart.html" class="nav-item active">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="cartBadge">0</span>
+            </a>
+            <a href="bookings.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="contact.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="tel:+919876543210" class="fab fab-call">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919876543210" class="fab fab-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Booking Confirmed! 🎉</h3>
+            <p>Your appointment has been successfully booked. We'll see you soon!</p>
+            <div class="booking-details" id="bookingDetails">
+                <!-- Booking details will be populated here -->
+            </div>
+            <div class="modal-actions">
+                <a href="index.html" class="btn-secondary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="bookings.html" class="btn-primary">
+                    <i class="fas fa-calendar"></i> View Bookings
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

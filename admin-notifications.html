@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Unlock Style Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-brand">
+                    <i class="fas fa-cut"></i>
+                    <span class="brand-text">Unlock Style</span>
+                    <span class="brand-badge">Admin</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-title">MAIN</div>
+                    <a href="admin.html" class="nav-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                    <a href="admin-analytics.html" class="nav-item">
+                        <i class="fas fa-chart-pie"></i>
+                        <span class="nav-text">Analytics</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">MANAGEMENT</div>
+                    <a href="admin-customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span class="nav-text">Customers</span>
+                    </a>
+                    <a href="admin-staff.html" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="nav-text">Staff</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">NOTIFICATIONS</div>
+                    <a href="admin-notifications.html" class="nav-item active">
+                        <i class="fas fa-bell"></i>
+                        <span class="nav-text">Push Notifications</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1>Push Notifications</h1>
+                    <div class="breadcrumb">
+                        <span>Home</span> / <span>Notifications</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Notification Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card revenue">
+                        <div class="stat-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalSent">156</div>
+                            <div class="stat-label">Total Sent</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card bookings">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="avgOpenRate">68%</div>
+                            <div class="stat-label">Avg. Open Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card customers">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="subscribedUsers">124</div>
+                            <div class="stat-label">Subscribed Users</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Notification Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Create New Notification</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="notificationForm" onsubmit="adminApp.sendNotification(event)">
+                            <div class="form-group">
+                                <label for="notificationTitle">Title</label>
+                                <input type="text" id="notificationTitle" required 
+                                       placeholder="Enter notification title">
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationMessage">Message</label>
+                                <textarea id="notificationMessage" required 
+                                          placeholder="Enter your message" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationType">Notification Type</label>
+                                <select id="notificationType" required>
+                                    <option value="reminder">Reminder</option>
+                                    <option value="offer">Special Offer</option>
+                                    <option value="alert">Important Alert</option>
+                                    <option value="update">Service Update</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationAudience">Target Audience</label>
+                                <select id="notificationAudience">
+                                    <option value="all">All Users</option>
+                                    <option value="regular">Regular Customers</option>
+                                    <option value="new">New Customers</option>
+                                    <option value="inactive">Inactive Customers</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationSchedule">Schedule</label>
+                                <select id="notificationSchedule">
+                                    <option value="now">Send Immediately</option>
+                                    <option value="later">Schedule for Later</option>
+                                </select>
+                                <input type="datetime-local" id="scheduleTime" 
+                                       style="display: none; margin-top: 10px;">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Send Notification
+                                </button>
+                                <button type="button" class="btn-secondary" onclick="adminApp.previewNotification()">
+                                    <i class="fas fa-eye"></i> Preview
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Notification History -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Notification History</h3>
+                        <button class="btn-secondary" onclick="adminApp.clearNotificationHistory()">
+                            <i class="fas fa-trash"></i> Clear History
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="notification-history" id="notificationHistory">
+                            <!-- Notifications will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Notification Preview</h3>
+                <span class="close" onclick="adminApp.closeModal('previewModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="notification-preview">
+                    <div class="preview-header">
+                        <strong id="previewTitle">Notification Title</strong>
+                        <span class="preview-badge" id="previewType">reminder</span>
+                    </div>
+                    <div class="preview-body" id="previewMessage">
+                        Notification message content will appear here.
+                    </div>
+                    <div class="preview-time">Just now</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="adminApp.sendNotification()">Send Now</button>
+                <button class="btn-secondary" onclick="adminApp.closeModal('previewModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.adminApp) {
+                adminApp.loadNotificationHistory();
+                
+                // Show/hide schedule time
+                document.getElementById('notificationSchedule').addEventListener('change', function() {
+                    document.getElementById('scheduleTime').style.display = 
+                        this.value === 'later' ? 'block' : 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

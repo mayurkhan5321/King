@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Style - Men's Salon</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Premium men's salon services - haircuts, shaving, grooming, spa treatments. Book your appointment online.">
+    <meta name="keywords" content="men's salon, haircut, shave, grooming, spa, barber, booking">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cut"></i>
+                    <h1>Unlock Style</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-book" onclick="openBookingModal()">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Premium Grooming for Modern Men</h2>
+                    <p>Look your best with professional styling services</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="location.href='services.html'">
+                            <i class="fas fa-cut"></i> View Services
+                        </button>
+                        <button class="btn-secondary" onclick="openBookingModal()">
+                            <i class="fas fa-calendar"></i> Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-content">
+                            <h3>8:00 AM - 11:00 PM</h3>
+                            <p>Working Hours</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="stat-content">
+                            <h3>Andheri West</h3>
+                            <p>Mumbai Location</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-phone"></i>
+                        <div class="stat-content">
+                            <h3>+91 98765 43210</h3>
+                            <p>Call Us Now</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Services -->
+        <section class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Popular Services</h2>
+                    <p>Most booked services by our customers</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" onclick="addToCart('Classic Haircut', 199)">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Haircut">
+                        </div>
+                        <div class="service-content">
+                            <h3>Classic Haircut</h3>
+                            <p>Professional haircut with styling</p>
+                            <div class="service-price">₹199</div>
+                            <button class="btn-add">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card" onclick="addToCart('Beard Trim', 149)">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Beard Trim">
+                        </div>
+                        <div class="service-content">
+                            <h3>Beard Trim</h3>
+                            <p>Precision beard shaping</p>
+                            <div class="service-price">₹149</div>
+                            <button class="btn-add">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="service-card" onclick="addToCart('Straight Razor Shave', 249)">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1543741680-28f5b9f8c9b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Shave">
+                        </div>
+                        <div class="service-content">
+                            <h3>Straight Razor Shave</h3>
+                            <p>Hot towel + straight razor</p>
+                            <div class="service-price">₹249</div>
+                            <button class="btn-add">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PhonePe Style Bottom Navigation -->
+    <nav class="bottom-nav phonepe-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="services.html" class="nav-item">
+                <i class="fas fa-cut"></i>
+                <span>Services</span>
+            </a>
+            <a href="cart.html" class="nav-item cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="cartBadge">0</span>
+            </a>
+            <a href="bookings.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="contact.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="tel:+919876543210" class="fab fab-call">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919876543210" class="fab fab-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

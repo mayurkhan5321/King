@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Unlock Style</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Manage your Unlock Style Men's Salon account">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <i class="fas fa-user-circle"></i>
+                    <h1>My Profile</h1>
+                </div>
+                <button class="btn-logout" onclick="auth.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content profile-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <h2 id="welcomeMessage">Welcome, User! 👋</h2>
+                        <p>Here's your personalized dashboard</p>
+                    </div>
+                    <div class="member-since">
+                        <span>Member since <strong id="memberSince">2024</strong></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Info Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <button class="btn-edit" onclick="profile.toggleEditMode()">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-view" id="profileView">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Full Name</label>
+                                <p id="displayName">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Email Address</label>
+                                <p id="displayEmail">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Phone Number</label>
+                                <p id="displayPhone">-</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Account Type</label>
+                                <p class="badge premium">Premium Member</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="profile-edit" id="profileEdit" style="display: none;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="editName">Full Name</label>
+                                <input type="text" id="editName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editPhone">Phone Number</label>
+                                <input type="tel" id="editPhone" required maxlength="10">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="profile.cancelEdit()">Cancel</button>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Loyalty Program -->
+            <section class="loyalty-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-crown"></i> Loyalty Rewards</h3>
+                    <span class="loyalty-badge">Active</span>
+                </div>
+
+                <div class="loyalty-card">
+                    <div class="loyalty-progress">
+                        <div class="progress-header">
+                            <span>Your Progress</span>
+                            <span id="loyaltyCount">2/5 visits</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="loyaltyProgress" style="width: 40%"></div>
+                        </div>
+                        <div class="progress-text">
+                            <strong>2 more visits</strong> to earn a free haircut! 🎉
+                        </div>
+                    </div>
+
+                    <div class="rewards-list">
+                        <div class="reward-item achieved">
+                            <i class="fas fa-check-circle"></i>
+                            <span>1st Visit - Welcome Gift</span>
+                        </div>
+                        <div class="reward-item achieved">
+                            <i class="fas fa-check-circle"></i>
+                            <span>5th Visit - Free Haircut</span>
+                        </div>
+                        <div class="reward-item">
+                            <i class="fas fa-gem"></i>
+                            <span>10th Visit - Premium Treatment</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bookings Summary -->
+            <section class="bookings-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-calendar-check"></i> My Bookings</h3>
+                    <a href="bookings.html" class="view-all">View All</a>
+                </div>
+
+                <div class="bookings-summary">
+                    <div class="stats-cards">
+                        <div class="stat-card upcoming">
+                            <i class="fas fa-clock"></i>
+                            <div class="stat-content">
+                                <div class="stat-value" id="upcomingBookings">2</div>
+                                <div class="stat-label">Upcoming</div>
+                            </div>
+                        </div>
+                        <div class="stat-card completed">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="stat-content">
+                                <div class="stat-value" id="completedBookings">5</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                        </div>
+                        <div class="stat-card total">
+                            <i class="fas fa-calendar"></i>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalBookings">7</div>
+                                <div class="stat-label">Total</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-bookings" id="recentBookings">
+                        <!-- Recent bookings will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Account Settings -->
+            <section class="settings-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-cog"></i> Account Settings</h3>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-list">
+                        <button class="setting-item" onclick="profile.changePassword()">
+                            <i class="fas fa-key"></i>
+                            <span>Change Password</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <button class="setting-item" onclick="profile.manageNotifications()">
+                            <i class="fas fa-bell"></i>
+                            <span>Notification Preferences</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <button class="setting-item" onclick="profile.privacySettings()">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Privacy & Security</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <button class="setting-item" onclick="profile.helpSupport()">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Help & Support</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- PhonePe Style Bottom Navigation -->
+    <nav class="bottom-nav phonepe-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="services.html" class="nav-item">
+                <i class="fas fa-cut"></i>
+                <span>Services</span>
+            </a>
+            <a href="cart.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="cartBadge">0</span>
+            </a>
+            <a href="bookings.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="profile.html" class="nav-item active">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Change Password Modal -->
+    <div class="modal-overlay" id="passwordModal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+                <h3>Change Password</h3>
+                <button class="modal-close" onclick="profile.closePasswordModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="auth-form" id="passwordForm">
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="currentPassword" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="newPassword" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmNewPassword" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="profile.closePasswordModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Update Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

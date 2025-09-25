@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - Unlock Style</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="View and manage your appointments at Unlock Style Men's Salon">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <i class="fas fa-calendar-check"></i>
+                    <h1>My Bookings</h1>
+                </div>
+                <button class="btn-refresh" id="refreshBookings">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Bookings Filter -->
+        <section class="bookings-filter-section">
+            <div class="container">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">
+                        <i class="fas fa-list"></i> All
+                    </button>
+                    <button class="filter-tab" data-filter="upcoming">
+                        <i class="fas fa-clock"></i> Upcoming
+                    </button>
+                    <button class="filter-tab" data-filter="completed">
+                        <i class="fas fa-check-circle"></i> Completed
+                    </button>
+                    <button class="filter-tab" data-filter="cancelled">
+                        <i class="fas fa-times-circle"></i> Cancelled
+                    </button>
+                </div>
+
+                <div class="bookings-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon upcoming">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-count" id="upcomingCount">0</span>
+                            <span class="stat-label">Upcoming</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon completed">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-count" id="completedCount">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon total">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-count" id="totalCount">0</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bookings List -->
+        <section class="bookings-list-section">
+            <div class="container">
+                <div class="bookings-container" id="bookingsContainer">
+                    <!-- Bookings will be populated by JavaScript -->
+                    <div class="empty-bookings" id="emptyBookings">
+                        <div class="empty-icon">
+                            <i class="fas fa-calendar-times"></i>
+                        </div>
+                        <h3>No Bookings Yet</h3>
+                        <p>You haven't made any bookings yet. Book your first appointment to get started!</p>
+                        <a href="services.html" class="btn-primary">
+                            <i class="fas fa-cut"></i> Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PhonePe Style Bottom Navigation -->
+    <nav class="bottom-nav phonepe-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="services.html" class="nav-item">
+                <i class="fas fa-cut"></i>
+                <span>Services</span>
+            </a>
+            <a href="cart.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="cartBadge">0</span>
+            </a>
+            <a href="bookings.html" class="nav-item active">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="contact.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="tel:+919876543210" class="fab fab-call">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919876543210" class="fab fab-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Booking Details Modal -->
+    <div class="modal-overlay" id="bookingDetailsModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Booking Details</h3>
+                <button class="modal-close" onclick="bookingsPage.closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="booking-detail-view" id="bookingDetailContent">
+                    <!-- Booking details will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Confirmation Modal -->
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-content">
+            <div class="modal-icon warning">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Cancel Booking?</h3>
+            <p>Are you sure you want to cancel this appointment? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="bookingsPage.closeCancelModal()">
+                    <i class="fas fa-times"></i> Keep Booking
+                </button>
+                <button class="btn-danger" id="confirmCancelBtn">
+                    <i class="fas fa-trash"></i> Yes, Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/bookings.js"></script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Unlock Style</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Unlock Style Admin Panel - Manage salon operations efficiently">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-body">
+    <!-- Login Screen -->
+    <div class="admin-login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-logo">
+                        <i class="fas fa-cut"></i>
+                        <h2>Unlock Style Admin</h2>
+                    </div>
+                    <p>Sign in to manage your salon</p>
+                </div>
+                
+                <form class="login-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">
+                            <i class="fas fa-user"></i> Username
+                        </label>
+                        <input type="text" id="adminUsername" required placeholder="Enter username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="adminPassword" required placeholder="Enter password">
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe"> Remember me
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </form>
+                
+                <div class="login-footer">
+                    <p>Default credentials: admin / admin123</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-brand">
+                    <i class="fas fa-cut"></i>
+                    <span class="brand-text">Unlock Style</span>
+                    <span class="brand-badge">Admin</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            
+            
+<nav class="sidebar-nav">
+    <div class="nav-section">
+        <div class="nav-title">MAIN</div>
+        <a href="#dashboard" class="nav-item active" data-page="dashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span class="nav-text">Dashboard</span>
+        </a>
+        <a href="admin-analytics.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span class="nav-text">Analytics</span>
+        </a>
+    </div>
+    
+    <div class="nav-section">
+        <div class="nav-title">MANAGEMENT</div>
+        <a href="admin-customers.html" class="nav-item">
+            <i class="fas fa-users"></i>
+            <span class="nav-text">Customers</span>
+        </a>
+        <a href="admin-staff.html" class="nav-item">
+            <i class="fas fa-user-tie"></i>
+            <span class="nav-text">Staff</span>
+        </a>
+        <a href="#services" class="nav-item" data-page="services">
+            <i class="fas fa-cut"></i>
+            <span class="nav-text">Services</span>
+        </a>
+    </div>
+    
+    <div class="nav-section">
+        <div class="nav-title">NOTIFICATIONS</div>
+        <a href="admin-notifications.html" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span class="nav-text">Push Notifications</span>
+        </a>
+    </div>
+    
+    <div class="nav-section">
+        <div class="nav-title">SETTINGS</div>
+        <a href="#settings" class="nav-item" data-page="settings">
+            <i class="fas fa-cog"></i>
+            <span class="nav-text">Settings</span>
+        </a>
+    </div>
+</nav>
+           
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="user-details">
+                        <div class="user-name">Admin User</div>
+                        <div class="user-role">Super Administrator</div>
+                    </div>
+                </div>
+                <button class="btn-logout" onclick="adminApp.logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <!-- Top Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <div class="breadcrumb" id="breadcrumb">
+                        <span>Home</span> / <span>Dashboard</span>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="header-actions">
+                        <button class="header-btn" id="notificationsBtn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <button class="header-btn" id="themeToggleBtn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        
+                        <div class="user-dropdown">
+                            <button class="user-btn">
+                                <div class="user-avatar-sm">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <span>Admin</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="admin-content">
+                <!-- Dashboard Page -->
+                <div class="page-content active" id="dashboardPage">
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card revenue">
+                            <div class="stat-icon">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalRevenue">₹12,458</div>
+                                <div class="stat-label">Total Revenue</div>
+                                <div class="stat-trend positive">
+                                    <i class="fas fa-arrow-up"></i> 12% this month
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card bookings">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalBookings">24</div>
+                                <div class="stat-label">Today's Bookings</div>
+                                <div class="stat-trend positive">
+                                    <i class="fas fa-arrow-up"></i> 3 new
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card customers">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalCustomers">156</div>
+                                <div class="stat-label">Total Customers</div>
+                                <div class="stat-trend positive">
+                                    <i class="fas fa-arrow-up"></i> 8 new
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card rating">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="averageRating">4.8</div>
+                                <div class="stat-label">Average Rating</div>
+                                <div class="stat-trend positive">
+                                    <i class="fas fa-arrow-up"></i> 0.2 increase
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="charts-row">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Revenue Analytics</h3>
+                                <select class="chart-filter" id="revenueFilter">
+                                    <option value="week">This Week</option>
+                                    <option value="month" selected>This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                            </div>
+                            <canvas id="revenueChart" height="250"></canvas>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Service Popularity</h3>
+                            </div>
+                            <canvas id="servicesChart" height="250"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="activity-row">
+                        <div class="activity-card">
+                            <div class="card-header">
+                                <h3>Recent Bookings</h3>
+                                <a href="#bookings" class="view-all">View All</a>
+                            </div>
+                            <div class="activity-list" id="recentBookingsList">
+                                <!-- Recent bookings will be loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div class="activity-card">
+                            <div class="card-header">
+                                <h3>System Notifications</h3>
+                                <button class="btn-clear" onclick="adminApp.clearNotifications()">Clear All</button>
+                            </div>
+                            <div class="notification-list" id="notificationList">
+                                <!-- Notifications will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other pages will be added similarly -->
+                <div class="page-content" id="bookingsPage" style="display: none;">
+                    <!-- Bookings management content -->
+                </div>
+                
+                <div class="page-content" id="servicesPage" style="display: none;">
+                    <!-- Services management content -->
+                </div>
+                
+                <!-- More pages... -->
+            </div>
+        </div>
+
+        <!-- Notifications Panel -->
+        <div class="notifications-panel" id="notificationsPanel">
+            <div class="panel-header">
+                <h3>Notifications</h3>
+                <button class="panel-close" onclick="adminApp.closeNotifications()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="panel-content">
+                <!-- Notifications content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

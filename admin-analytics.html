@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Unlock Style Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="admin-body">
+    <!-- Analytics Dashboard -->
+    <div class="admin-dashboard">
+        <!-- Sidebar (same as admin.html) -->
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-brand">
+                    <i class="fas fa-cut"></i>
+                    <span class="brand-text">Unlock Style</span>
+                    <span class="brand-badge">Admin</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-title">MAIN</div>
+                    <a href="admin.html" class="nav-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                    <a href="admin-analytics.html" class="nav-item active">
+                        <i class="fas fa-chart-pie"></i>
+                        <span class="nav-text">Analytics</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">MANAGEMENT</div>
+                    <a href="admin-customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span class="nav-text">Customers</span>
+                    </a>
+                    <a href="admin-staff.html" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="nav-text">Staff</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-title">NOTIFICATIONS</div>
+                    <a href="admin-notifications.html" class="nav-item">
+                        <i class="fas fa-bell"></i>
+                        <span class="nav-text">Push Notifications</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1>Business Analytics</h1>
+                    <div class="breadcrumb">
+                        <span>Home</span> / <span>Analytics</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Stats Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card revenue">
+                        <div class="stat-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalServices">12</div>
+                            <div class="stat-label">Total Services</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card bookings">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalCustomers">156</div>
+                            <div class="stat-label">Total Customers</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card customers">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalStaff">8</div>
+                            <div class="stat-label">Total Staff</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card rating">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalBookings">324</div>
+                            <div class="stat-label">Total Bookings</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card revenue">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="upcomingAppointments">12</div>
+                            <div class="stat-label">Upcoming Today</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card bookings">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="estimatedRevenue">₹1,24,580</div>
+                            <div class="stat-label">Estimated Revenue</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Service Popularity</h3>
+                        </div>
+                        <canvas id="servicesChart" height="300"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Bookings Trend (Last 30 Days)</h3>
+                        </div>
+                        <canvas id="bookingsChart" height="300"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Staff Workload Distribution</h3>
+                    </div>
+                    <canvas id="staffWorkloadChart" height="300"></canvas>
+                </div>
+
+                <!-- Revenue Analytics -->
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Revenue by Service Category</h3>
+                        </div>
+                        <canvas id="revenueChart" height="300"></canvas>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Customer Retention Rate</h3>
+                        </div>
+                        <canvas id="retentionChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        // Analytics-specific initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.adminApp) {
+                adminApp.loadAnalyticsData();
+                adminApp.setupAnalyticsCharts();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Unlock Style</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Premium men's salon services - haircuts, shaving, grooming, spa treatments. Book your appointment online.">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c1dc9"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <i class="fas fa-cut"></i>
+                    <h1>Our Services</h1>
+                </div>
+                <a href="cart.html" class="cart-icon-header">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="nav-badge" id="headerCartBadge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Services Grid -->
+        <section class="services-page-section">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Premium Grooming Services</h2>
+                    <p>Choose from our wide range of professional services</p>
+                </div>
+
+                <div class="services-filter">
+                    <button class="filter-btn active" data-filter="all">All Services</button>
+                    <button class="filter-btn" data-filter="hair">Hair</button>
+                    <button class="filter-btn" data-filter="beard">Beard</button>
+                    <button class="filter-btn" data-filter="spa">Spa & Facial</button>
+                </div>
+
+                <div class="services-grid-enhanced" id="servicesGrid">
+                    <!-- Services will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers Banner -->
+        <section class="offers-section">
+            <div class="container">
+                <div class="offer-banner">
+                    <div class="offer-content">
+                        <h3>🎉 First Visit Offer</h3>
+                        <p>Get 20% off on your first appointment</p>
+                        <span class="offer-badge">Use code: WELCOME20</span>
+                    </div>
+                    <div class="offer-image">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PhonePe Style Bottom Navigation -->
+    <nav class="bottom-nav phonepe-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="services.html" class="nav-item active">
+                <i class="fas fa-cut"></i>
+                <span>Services</span>
+            </a>
+            <a href="cart.html" class="nav-item cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+                <span class="nav-badge" id="cartBadge">0</span>
+            </a>
+            <a href="bookings.html" class="nav-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="contact.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="tel:+919876543210" class="fab fab-call">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919876543210" class="fab fab-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/services.js"></script>
+</body>
+</html>
