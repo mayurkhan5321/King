@@ -1,0 +1,594 @@
+
+
+/* Table Styles */
+.table-container {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background: #f8f9fa;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    transition: background 0.3s ease;
+}
+
+.data-table tr:hover td {
+    background: #f7fafc;
+    cursor: pointer;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.active {
+    background: #c6f6d5;
+    color: #276749;
+}
+
+.status-badge.inactive {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.status-badge.pending {
+    background: #feebcb;
+    color: #c05621;
+}
+
+.role-badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.role-badge.barber {
+    background: #e9d8fd;
+    color: #6c1dc9;
+}
+
+.role-badge.stylist {
+    background: #c6f6d5;
+    color: #276749;
+}
+
+.role-badge.senior {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #6c1dc9, #8d2de2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(108, 29, 201, 0.3);
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+}
+
+.btn-danger {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background: #c53030;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #718096;
+}
+
+.btn-icon:hover {
+    background: #edf2f7;
+    color: #6c1dc9;
+}
+
+.btn-icon.danger:hover {
+    background: #fed7d7;
+    color: #e53e3e;
+}
+
+/* Filters and Search */
+.filters-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #6c1dc9;
+}
+
+.filters-bar select {
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    color: #4a5568;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    background: white;
+    border: 2px solid #e2e8f0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover {
+    border-color: #6c1dc9;
+    color: #6c1dc9;
+}
+
+.page-info {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    animation: slideIn 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    padding: 20px 30px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.close {
+    font-size: 1.5rem;
+    color: #a0aec0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #4a5568;
+}
+
+.modal-body {
+    padding: 30px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #6c1dc9;
+    box-shadow: 0 0 0 3px rgba(108, 29, 201, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+/* Card Styles */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.card-body {
+    padding: 0;
+}
+
+/* Notification Styles */
+.notification-history {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.history-type {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    min-width: 60px;
+    text-align: center;
+}
+
+.history-type.reminder {
+    background: #bee3f8;
+    color: #2c5aa0;
+}
+
+.history-type.offer {
+    background: #c6f6d5;
+    color: #276749;
+}
+
+.history-type.alert {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.history-content {
+    flex: 1;
+}
+
+.history-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2d3748;
+}
+
+.history-message {
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.history-meta {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.history-meta .status.sent {
+    color: #38a169;
+}
+
+.history-meta .status.failed {
+    color: #e53e3e;
+}
+
+/* Preview Notification */
+.notification-preview {
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.preview-badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.preview-time {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    margin-top: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Customer Info */
+.customer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item label {
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.info-item span {
+    color: #2d3748;
+    font-size: 1rem;
+}
+
+.booking-history {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+}
+
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.booking-item:last-child {
+    border-bottom: none;
+}
+
+.booking-service {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.booking-date {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+/* Rating */
+.rating {
+    color: #f59e0b;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filters-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        max-width: none;
+    }
+    
+    .data-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .customer-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+/* Dark Mode Updates */
+.admin-body.dark-mode .table-container,
+.admin-body.dark-mode .card,
+.admin-body.dark-mode .modal-content {
+    background: #2d3748;
+    color: #e2e8f0;
+}
+
+.admin-body.dark-mode .data-table th {
+    background: #4a5568;
+    color: #e2e8f0;
+}
+
+.admin-body.dark-mode .data-table td {
+    border-color: #4a5568;
+}
+
+.admin-body.dark-mode .search-box input,
+.admin-body.dark-mode .filters-bar select,
+.admin-body.dark-mode .form-group input,
+.admin-body.dark-mode .form-group select,
+.admin-body.dark-mode .form-group textarea {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+.admin-body.dark-mode .notification-preview {
+    background: #2d3748;
+    border-color: #4a5568;
+}
